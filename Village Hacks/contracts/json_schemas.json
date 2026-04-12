@@ -1,0 +1,66 @@
+{
+  "level1": {
+    "level": "LV1",
+    "overall_result": "PASS",
+    "confidence": 0.92,
+    "flags": [
+      { "check": "image_resolution",        "status": "PASS", "detail": "1200x800 — sufficient" },
+      { "check": "required_fields_present", "status": "PASS", "detail": "All fields found" },
+      { "check": "dob_format",              "status": "PASS", "detail": "MM/DD/YYYY confirmed" },
+      { "check": "license_number_length",   "status": "PASS", "detail": "CO: 9 chars matched" },
+      { "check": "layout_field_order",      "status": "PASS", "detail": "Name at top, barcode at bottom" }
+    ],
+    "fraud_case_reference": "Brooklyn $2.1M — AI fake IDs fooled notaries on visual inspection"
+  },
+  "level2": {
+    "level": "LV2",
+    "extraction_confidence": 0.87,
+    "fields": {
+      "first_name":    "Jane",
+      "last_name":     "Doe",
+      "middle_name":   "Marie",
+      "dob":           "1985-04-12",
+      "id_number":     "D12345678",
+      "expiration":    "2028-06-15",
+      "address":       "1420 Elm St Denver CO 80203",
+      "license_class": "D",
+      "issuing_state": "CO",
+      "id_type":       "drivers_license"
+    },
+    "uncertain_fields": []
+  },
+  "level3": {
+    "level": "LV3",
+    "overall_identity_match": "MATCH",
+    "fields": [
+      { "field": "first_name", "id_value": "Jane",                       "doc_value": "Jane",                       "match": true,  "confidence": 1.0,  "flag": "MATCH" },
+      { "field": "last_name",  "id_value": "Doe",                        "doc_value": "Doe",                        "match": true,  "confidence": 1.0,  "flag": "MATCH" },
+      { "field": "dob",        "id_value": "1985-04-12",                  "doc_value": "1985-04-12",                  "match": true,  "confidence": 1.0,  "flag": "MATCH" },
+      { "field": "address",    "id_value": "1420 Elm St Denver CO 80203", "doc_value": "1420 Elm St Denver CO 80203", "match": true,  "confidence": 0.98, "flag": "MATCH" }
+    ],
+    "fraud_case_reference": "Ohio Salone v. Stovall — name/address mismatch across pages went undetected"
+  },
+  "level4": {
+    "level": "LV4",
+    "overall_compliance": "PASS",
+    "checks": [
+      { "rule": "id_expiration",       "status": "PASS", "detail": "Expires 2028-06-15 — 800 days remaining",   "citation": "NIST SP 800-63-3 IAL2" },
+      { "rule": "instate_requirement", "status": "PASS", "detail": "N/A — CO property, no in-state requirement", "citation": "TX/FL in-state ID requirement" },
+      { "rule": "mismo_recording",     "status": "PASS", "detail": "ID type and expiration present",             "citation": "MISMO standard" },
+      { "rule": "notary_commission",   "status": "PASS", "detail": "Commission valid until 2026-12-31 — Demo Notary John Rivera", "citation": "State Notary Public Act" }
+    ],
+    "fraud_case_reference": "Queens NY $1.5M — complicit notary with lapsed commission notarized forged deed",
+    "compliance_note": "Compliance rules reflect guide specification for demo purposes (Notary Everyday x VillageHacks 2026)"
+  },
+  "full": {
+    "lv1": "< level1 shape above >",
+    "lv2": "< level2 shape above >",
+    "lv3": "< level3 shape above >",
+    "lv4": "< level4 shape above >",
+    "decision": {
+      "final_decision":     "PASS",
+      "decision_reasons":   [],
+      "recommended_action": "Proceed with notarization"
+    }
+  }
+}
